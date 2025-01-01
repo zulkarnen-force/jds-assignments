@@ -1,0 +1,31 @@
+services:
+  jds.fetch.app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    container_name: jds.fetch.app
+    volumes:
+      - .:/app
+      - /app/tmp
+    ports:
+      - "8080:8080"
+    environment:
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - DB_NAME=fiber_db
+      - JWT_SECRET=${JWT_SECRET:-supersecret}
+      - REDIS_HOST=${REDIS_HOST:-jds.redis}
+      - REDIS_PASSWORD=${REDIS_PASSWORD:-redis@secret}
+    depends_on:
+      - jds.redis
+
+  jds.redis:
+    image: redis:latest
+    container_name: jds.redis
+    command:
+      ["redis-server", "--requirepass", "${REDIS_PASSWORD:-redis@secret}"]
+    environment:
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
