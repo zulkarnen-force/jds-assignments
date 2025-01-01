@@ -1,0 +1,1576 @@
+openapi: 3.0.0
+info:
+  title: JDS
+  version: 1.0.0
+servers:
+  - url: http://localhost:30000
+  - url: http://localhost:8080
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+tags:
+  - name: Auth
+  - name: Fetch
+paths:
+  /v1/auth/register:
+    post:
+      tags:
+        - Auth
+      summary: Register User
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: admin
+                nik: "1111111111111111"
+      responses:
+        "201":
+          description: Created
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Vary:
+              schema:
+                type: string
+                example: Origin
+            Access-Control-Allow-Credentials:
+              schema:
+                type: boolean
+                example: "true"
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: "137"
+            ETag:
+              schema:
+                type: string
+                example: W/"89-ydhiTkmmgrdDoFbMgi7PPFp6dNo"
+            Date:
+              schema:
+                type: string
+                example: Wed, 01 Jan 2025 07:09:36 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: true
+                message: Data successfully saved.
+                data:
+                  name: admin
+                  nik: "1111111111111111"
+                  role: admin
+                  password: qz12v1
+  /v1/auth/login:
+    post:
+      tags:
+        - Auth
+      summary: Login User
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                nik: "1111111111111111"
+                password: osv10i
+      responses:
+        "200":
+          description: OK
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Vary:
+              schema:
+                type: string
+                example: Origin
+            Access-Control-Allow-Credentials:
+              schema:
+                type: boolean
+                example: "true"
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: "308"
+            ETag:
+              schema:
+                type: string
+                example: W/"134-Hu76qzRg/c9T6j95isNXCxfhmUU"
+            Date:
+              schema:
+                type: string
+                example: Wed, 01 Jan 2025 06:22:11 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: true
+                message: Data succesfully found.
+                data:
+                  token: >-
+                    eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRtaW4iLCJuaWsiOiIxMTExMTExMTExMTExMTExIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzM1NzEyNTMxLCJleHAiOjE3MzU3OTg5MzEsImlzcyI6ImpkcyJ9.CccrV6ISufZsfX70O7CG_jhemtOb-HYLshqpx0hvrbc
+                  expires_in: 24h
+  /v1/auth/me:
+    get:
+      tags:
+        - Auth
+      summary: Get Claim Data
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: OK
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Vary:
+              schema:
+                type: string
+                example: Origin
+            Access-Control-Allow-Credentials:
+              schema:
+                type: boolean
+                example: "true"
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: "162"
+            ETag:
+              schema:
+                type: string
+                example: W/"a2-opxNPkevhIpYD8GBRDFeedIbCU0"
+            Date:
+              schema:
+                type: string
+                example: Wed, 01 Jan 2025 07:10:53 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: true
+                message: Data succesfully found.
+                data:
+                  name: admin
+                  nik: "1111111111111111"
+                  role: admin
+                  iat: 1735712531
+                  exp: 1735798931
+                  iss: jds
+  /products:
+    get:
+      tags:
+        - Fetch
+      summary: Product
+      responses:
+        "200":
+          description: OK
+          headers:
+            Date:
+              schema:
+                type: string
+                example: Wed, 01 Jan 2025 06:26:48 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              schema:
+                type: integer
+                example: "13147"
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  - id: "1"
+                    createdAt: "2021-06-09T09:37:05.527Z"
+                    price: "218.00"
+                    department: Outdoors
+                    product: Salad
+                    priceIDR: "3536123.5"
+                  - id: "2"
+                    createdAt: "2021-06-09T10:11:46.024Z"
+                    price: "784.00"
+                    department: Games
+                    product: Chips
+                    priceIDR: "12717068"
+                  - id: "3"
+                    createdAt: "2021-06-09T11:17:38.575Z"
+                    price: "652.00"
+                    department: Automotive
+                    product: Bike
+                    priceIDR: "10575929"
+                  - id: "4"
+                    createdAt: "2021-06-09T04:42:03.396Z"
+                    price: "544.00"
+                    department: Tools
+                    product: Tuna
+                    priceIDR: "8824088"
+                  - id: "5"
+                    createdAt: "2021-06-09T04:32:08.983Z"
+                    price: "643.00"
+                    department: Toys
+                    product: Fish
+                    priceIDR: "10429942.25"
+                  - id: "6"
+                    createdAt: "2021-06-09T15:21:57.449Z"
+                    price: "100.00"
+                    department: Baby
+                    product: Bacon
+                    priceIDR: "1622075"
+                  - id: "7"
+                    createdAt: "2021-06-09T12:19:54.176Z"
+                    price: "584.00"
+                    department: Clothing
+                    product: Pants
+                    priceIDR: "9472918"
+                  - id: "8"
+                    createdAt: "2021-06-09T18:26:11.407Z"
+                    price: "265.00"
+                    department: Kids
+                    product: Bacon
+                    priceIDR: "4298498.75"
+                  - id: "9"
+                    createdAt: "2021-06-09T12:01:47.71Z"
+                    price: "493.00"
+                    department: Health
+                    product: Computer
+                    priceIDR: "7996829.75"
+                  - id: "10"
+                    createdAt: "2021-06-09T04:59:49.031Z"
+                    price: "877.00"
+                    department: Games
+                    product: Soap
+                    priceIDR: "14225597.75"
+                  - id: "11"
+                    createdAt: "2021-06-09T14:58:57.747Z"
+                    price: "293.00"
+                    department: Beauty
+                    product: Table
+                    priceIDR: "4752679.75"
+                  - id: "12"
+                    createdAt: "2021-06-09T12:06:14.748Z"
+                    price: "546.00"
+                    department: Books
+                    product: Chair
+                    priceIDR: "8856529.5"
+                  - id: "13"
+                    createdAt: "2021-06-09T04:51:50.198Z"
+                    price: "906.00"
+                    department: Automotive
+                    product: Salad
+                    priceIDR: "14695999.5"
+                  - id: "14"
+                    createdAt: "2021-06-09T10:58:52.802Z"
+                    price: "870.00"
+                    department: Computers
+                    product: Car
+                    priceIDR: "14112052.5"
+                  - id: "15"
+                    createdAt: "2021-06-09T20:42:15.915Z"
+                    price: "443.00"
+                    department: Movies
+                    product: Pants
+                    priceIDR: "7185792.25"
+                  - id: "16"
+                    createdAt: "2021-06-09T20:11:05.772Z"
+                    price: "810.00"
+                    department: Toys
+                    product: Towels
+                    priceIDR: "13138807.5"
+                  - id: "17"
+                    createdAt: "2021-06-09T05:00:03.467Z"
+                    price: "33.00"
+                    department: Health
+                    product: Car
+                    priceIDR: "535284.75"
+                  - id: "18"
+                    createdAt: "2021-06-09T21:12:33.589Z"
+                    price: "803.00"
+                    department: Outdoors
+                    product: Table
+                    priceIDR: "13025262.25"
+                  - id: "19"
+                    createdAt: "2021-06-09T15:27:43.954Z"
+                    price: "219.00"
+                    department: Computers
+                    product: Fish
+                    priceIDR: "3552344.25"
+                  - id: "20"
+                    createdAt: "2021-06-09T05:19:33.617Z"
+                    price: "878.00"
+                    department: Garden
+                    product: Cheese
+                    priceIDR: "14241818.5"
+                  - id: "21"
+                    createdAt: "2021-06-10T00:47:26.646Z"
+                    price: "556.00"
+                    department: Games
+                    product: Keyboard
+                    priceIDR: "9018737"
+                  - id: "22"
+                    createdAt: "2021-06-09T23:03:47.654Z"
+                    price: "38.00"
+                    department: Clothing
+                    product: Hat
+                    priceIDR: "616388.5"
+                  - id: "23"
+                    createdAt: "2021-06-09T09:37:10.447Z"
+                    price: "381.00"
+                    department: Music
+                    product: Keyboard
+                    priceIDR: "6180105.75"
+                  - id: "24"
+                    createdAt: "2021-06-09T18:39:49.036Z"
+                    price: "881.00"
+                    department: Outdoors
+                    product: Shoes
+                    priceIDR: "14290480.75"
+                  - id: "25"
+                    createdAt: "2021-06-09T21:58:02.611Z"
+                    price: "327.00"
+                    department: Movies
+                    product: Chicken
+                    priceIDR: "5304185.25"
+                  - id: "26"
+                    createdAt: "2021-06-09T15:48:49.399Z"
+                    price: "538.00"
+                    department: Sports
+                    product: Salad
+                    priceIDR: "8726763.5"
+                  - id: "27"
+                    createdAt: "2021-06-09T10:53:59.835Z"
+                    price: "621.00"
+                    department: Shoes
+                    product: Bike
+                    priceIDR: "10073085.75"
+                  - id: "28"
+                    createdAt: "2021-06-09T06:10:02.172Z"
+                    price: "849.00"
+                    department: Beauty
+                    product: Chips
+                    priceIDR: "13771416.75"
+                  - id: "29"
+                    createdAt: "2021-06-10T00:30:51.903Z"
+                    price: "869.00"
+                    department: Games
+                    product: Ball
+                    priceIDR: "14095831.75"
+                  - id: "30"
+                    createdAt: "2021-06-09T16:39:53.722Z"
+                    price: "840.00"
+                    department: Automotive
+                    product: Towels
+                    priceIDR: "13625430"
+                  - id: "31"
+                    createdAt: "2021-06-09T18:44:22.207Z"
+                    price: "353.00"
+                    department: Garden
+                    product: Hat
+                    priceIDR: "5725924.75"
+                  - id: "32"
+                    createdAt: "2021-06-09T12:22:33.457Z"
+                    price: "645.00"
+                    department: Sports
+                    product: Sausages
+                    priceIDR: "10462383.75"
+                  - id: "33"
+                    createdAt: "2021-06-09T08:10:24.806Z"
+                    price: "304.00"
+                    department: Kids
+                    product: Shoes
+                    priceIDR: "4931108"
+                  - id: "34"
+                    createdAt: "2021-06-09T19:10:32.176Z"
+                    price: "665.00"
+                    department: Home
+                    product: Computer
+                    priceIDR: "10786798.75"
+                  - id: "35"
+                    createdAt: "2021-06-09T11:40:41.908Z"
+                    price: "179.00"
+                    department: Jewelery
+                    product: Table
+                    priceIDR: "2903514.25"
+                  - id: "36"
+                    createdAt: "2021-06-09T15:39:02.106Z"
+                    price: "752.00"
+                    department: Books
+                    product: Pizza
+                    priceIDR: "12198004"
+                  - id: "37"
+                    createdAt: "2021-06-09T08:53:04.294Z"
+                    price: "653.00"
+                    department: Kids
+                    product: Chicken
+                    priceIDR: "10592149.75"
+                  - id: "38"
+                    createdAt: "2021-06-09T22:40:17.256Z"
+                    price: "307.00"
+                    department: Games
+                    product: Sausages
+                    priceIDR: "4979770.25"
+                  - id: "39"
+                    createdAt: "2021-06-10T01:39:52.165Z"
+                    price: "740.00"
+                    department: Garden
+                    product: Bike
+                    priceIDR: "12003355"
+                  - id: "40"
+                    createdAt: "2021-06-09T07:13:16.792Z"
+                    price: "111.00"
+                    department: Games
+                    product: Bike
+                    priceIDR: "1800503.25"
+                  - id: "41"
+                    createdAt: "2021-06-09T22:43:28.851Z"
+                    price: "894.00"
+                    department: Industrial
+                    product: Cheese
+                    priceIDR: "14501350.5"
+                  - id: "42"
+                    createdAt: "2021-06-09T09:33:24.675Z"
+                    price: "421.00"
+                    department: Clothing
+                    product: Ball
+                    priceIDR: "6828935.75"
+                  - id: "43"
+                    createdAt: "2021-06-09T07:37:14.96Z"
+                    price: "819.00"
+                    department: Tools
+                    product: Soap
+                    priceIDR: "13284794.25"
+                  - id: "44"
+                    createdAt: "2021-06-09T05:08:08.44Z"
+                    price: "929.00"
+                    department: Home
+                    product: Bike
+                    priceIDR: "15069076.75"
+                  - id: "45"
+                    createdAt: "2021-06-10T00:12:43.834Z"
+                    price: "231.00"
+                    department: Shoes
+                    product: Mouse
+                    priceIDR: "3746993.25"
+                  - id: "46"
+                    createdAt: "2021-06-09T15:30:16.468Z"
+                    price: "991.00"
+                    department: Tools
+                    product: Gloves
+                    priceIDR: "16074763.25"
+                  - id: "47"
+                    createdAt: "2021-06-10T01:34:52.459Z"
+                    price: "211.00"
+                    department: Music
+                    product: Car
+                    priceIDR: "3422578.25"
+                  - id: "48"
+                    createdAt: "2021-06-09T06:57:51.11Z"
+                    price: "408.00"
+                    department: Shoes
+                    product: Cheese
+                    priceIDR: "6618066"
+                  - id: "49"
+                    createdAt: "2021-06-10T01:44:10.504Z"
+                    price: "137.00"
+                    department: Grocery
+                    product: Table
+                    priceIDR: "2222242.75"
+                  - id: "50"
+                    createdAt: "2021-06-09T23:43:06.232Z"
+                    price: "505.00"
+                    department: Shoes
+                    product: Salad
+                    priceIDR: "8191478.75"
+                  - id: "51"
+                    createdAt: "2021-06-09T21:49:08.77Z"
+                    price: "921.00"
+                    department: Automotive
+                    product: Mouse
+                    priceIDR: "14939310.75"
+                  - id: "52"
+                    createdAt: "2021-06-09T16:44:56.257Z"
+                    price: "146.00"
+                    department: Beauty
+                    product: Gloves
+                    priceIDR: "2368229.5"
+                  - id: "53"
+                    createdAt: "2021-06-09T21:05:41.897Z"
+                    price: "559.00"
+                    department: Automotive
+                    product: Hat
+                    priceIDR: "9067399.25"
+                  - id: "54"
+                    createdAt: "2021-06-10T03:32:10.931Z"
+                    price: "96.00"
+                    department: Beauty
+                    product: Tuna
+                    priceIDR: "1557192"
+                  - id: "55"
+                    createdAt: "2021-06-09T19:21:02.928Z"
+                    price: "82.00"
+                    department: Health
+                    product: Bacon
+                    priceIDR: "1330101.5"
+                  - id: "56"
+                    createdAt: "2021-06-10T03:13:09.891Z"
+                    price: "285.00"
+                    department: Garden
+                    product: Chips
+                    priceIDR: "4622913.75"
+                  - id: "57"
+                    createdAt: "2021-06-09T04:46:50Z"
+                    price: "977.00"
+                    department: Home
+                    product: Keyboard
+                    priceIDR: "15847672.75"
+                  - id: "58"
+                    createdAt: "2021-06-09T15:41:48.387Z"
+                    price: "973.00"
+                    department: Kids
+                    product: Car
+                    priceIDR: "15782789.75"
+                  - id: "59"
+                    createdAt: "2021-06-09T09:07:33.513Z"
+                    price: "950.00"
+                    department: Kids
+                    product: Sausages
+                    priceIDR: "15409712.5"
+                  - id: "60"
+                    createdAt: "2021-06-09T08:33:16.487Z"
+                    price: "180.00"
+                    department: Industrial
+                    product: Table
+                    priceIDR: "2919735"
+                  - id: "61"
+                    createdAt: "2021-06-09T07:43:36.812Z"
+                    price: "276.00"
+                    department: Baby
+                    product: Gloves
+                    priceIDR: "4476927"
+                  - id: "62"
+                    createdAt: "2021-06-09T05:54:01.316Z"
+                    price: "72.00"
+                    department: Books
+                    product: Bike
+                    priceIDR: "1167894"
+                  - id: "63"
+                    createdAt: "2021-06-09T07:30:44.152Z"
+                    price: "140.00"
+                    department: Movies
+                    product: Tuna
+                    priceIDR: "2270905"
+                  - id: "64"
+                    createdAt: "2021-06-09T23:45:14.234Z"
+                    price: "916.00"
+                    department: Beauty
+                    product: Salad
+                    priceIDR: "14858207"
+                  - id: "65"
+                    createdAt: "2021-06-09T09:49:27.902Z"
+                    price: "416.00"
+                    department: Garden
+                    product: Hat
+                    priceIDR: "6747832"
+                  - id: "66"
+                    createdAt: "2021-06-09T22:22:36.104Z"
+                    price: "875.00"
+                    department: Clothing
+                    product: Bike
+                    priceIDR: "14193156.25"
+                  - id: "67"
+                    createdAt: "2021-06-09T18:49:19.622Z"
+                    price: "51.00"
+                    department: Health
+                    product: Pizza
+                    priceIDR: "827258.25"
+                  - id: "68"
+                    createdAt: "2021-06-09T23:08:49.509Z"
+                    price: "779.00"
+                    department: Books
+                    product: Cheese
+                    priceIDR: "12635964.25"
+                  - id: "69"
+                    createdAt: "2021-06-09T10:10:35.591Z"
+                    price: "773.00"
+                    department: Automotive
+                    product: Chair
+                    priceIDR: "12538639.75"
+                  - id: "70"
+                    createdAt: "2021-06-09T15:40:22.942Z"
+                    price: "4.00"
+                    department: Games
+                    product: Computer
+                    priceIDR: "64883"
+                  - id: "71"
+                    createdAt: "2021-06-09T22:33:14.108Z"
+                    price: "355.00"
+                    department: Movies
+                    product: Chicken
+                    priceIDR: "5758366.25"
+                  - id: "72"
+                    createdAt: "2021-06-09T15:12:21.648Z"
+                    price: "918.00"
+                    department: Baby
+                    product: Car
+                    priceIDR: "14890648.5"
+                  - id: "73"
+                    createdAt: "2021-06-09T14:14:27.754Z"
+                    price: "13.00"
+                    department: Automotive
+                    product: Car
+                    priceIDR: "210869.75"
+                  - id: "74"
+                    createdAt: "2021-06-10T00:05:09.288Z"
+                    price: "5.00"
+                    department: Computers
+                    product: Fish
+                    priceIDR: "81103.75"
+                  - id: "75"
+                    createdAt: "2021-06-09T07:41:58.851Z"
+                    price: "576.00"
+                    department: Health
+                    product: Ball
+                    priceIDR: "9343152"
+                  - id: "76"
+                    createdAt: "2022-03-19T21:59:31.417Z"
+                    price: "102.00"
+                    department: Garden
+                    product: Salad
+                    priceIDR: "1654516.5"
+                  - id: "77"
+                    createdAt: "2022-06-10T05:48:40.942Z"
+                    price: "169.00"
+                    department: Movies
+                    product: Towels
+                    priceIDR: "2741306.75"
+                  - id: "78"
+                    createdAt: "2022-06-09T16:50:27.304Z"
+                    price: "907.00"
+                    department: Outdoors
+                    product: Car
+                    priceIDR: "14712220.25"
+                  - id: "79"
+                    createdAt: "2022-06-09T20:10:26.625Z"
+                    price: "653.00"
+                    department: Automotive
+                    product: Tuna
+                    priceIDR: "10592149.75"
+                  - id: "80"
+                    createdAt: "2022-06-09T09:53:37.316Z"
+                    price: "485.00"
+                    department: Toys
+                    product: Pants
+                    priceIDR: "7867063.75"
+                  - id: "81"
+                    createdAt: "2022-06-10T00:08:57.33Z"
+                    price: "596.00"
+                    department: Tools
+                    product: Chicken
+                    priceIDR: "9667567"
+                  - id: "82"
+                    createdAt: "2022-06-09T19:36:40.11Z"
+                    price: "587.00"
+                    department: Toys
+                    product: Pizza
+                    priceIDR: "9521580.25"
+                  - id: "83"
+                    createdAt: "2022-06-10T01:36:19.453Z"
+                    price: "470.00"
+                    department: Clothing
+                    product: Mouse
+                    priceIDR: "7623752.5"
+                  - id: "84"
+                    createdAt: "2022-08-03T02:09:58.666Z"
+                    price: "764.00"
+                    department: Grocery
+                    product: Car
+                    priceIDR: "12392653"
+                  - id: "85"
+                    createdAt: "2022-08-02T18:32:07.286Z"
+                    price: "810.00"
+                    department: Clothing
+                    product: Sausages
+                    priceIDR: "13138807.5"
+                  - id: "86"
+                    createdAt: "2022-08-02T23:47:18.041Z"
+                    price: "782.00"
+                    department: Grocery
+                    product: Towels
+                    priceIDR: "12684626.5"
+                  - id: "87"
+                    createdAt: "2022-08-02T19:09:52.313Z"
+                    price: "395.00"
+                    department: Home
+                    product: Pants
+                    priceIDR: "6407196.25"
+                  - id: "88"
+                    createdAt: "2022-08-03T06:29:36.189Z"
+                    price: "758.00"
+                    department: Sports
+                    product: Keyboard
+                    priceIDR: "12295328.5"
+                  - id: "89"
+                    createdAt: "2022-08-03T11:30:44.727Z"
+                    price: "837.00"
+                    department: Games
+                    product: Pizza
+                    priceIDR: "13576767.75"
+                  - id: "90"
+                    createdAt: "2022-08-03T01:04:12.28Z"
+                    price: "267.00"
+                    department: Jewelery
+                    product: Soap
+                    priceIDR: "4330940.25"
+                  - id: "91"
+                    createdAt: "2022-08-03T11:50:08.84Z"
+                    price: "908.00"
+                    department: Kids
+                    product: Keyboard
+                    priceIDR: "14728441"
+                  - id: "92"
+                    createdAt: "2022-08-03T09:35:18.62Z"
+                    price: "924.00"
+                    department: Computers
+                    product: Mouse
+                    priceIDR: "14987973"
+                  - id: "93"
+                    createdAt: "2022-08-03T14:00:11.35Z"
+                    price: "644.00"
+                    department: Industrial
+                    product: Chips
+                    priceIDR: "10446163"
+                  - id: "94"
+                    createdAt: "2022-08-03T12:54:47.703Z"
+                    price: "866.00"
+                    department: Tools
+                    product: Fish
+                    priceIDR: "14047169.5"
+                  - id: "95"
+                    createdAt: "2022-08-03T01:20:57.254Z"
+                    price: "775.00"
+                    department: Jewelery
+                    product: Chips
+                    priceIDR: "12571081.25"
+                  - id: "96"
+                    createdAt: "2022-08-03T13:41:47.59Z"
+                    price: "584.00"
+                    department: Outdoors
+                    product: Keyboard
+                    priceIDR: "9472918"
+                  - id: "97"
+                    createdAt: "2022-08-02T16:04:48.453Z"
+                    price: "940.00"
+                    department: Games
+                    product: Soap
+                    priceIDR: "15247505"
+                  - id: "98"
+                    createdAt: "2022-08-03T14:28:34.75Z"
+                    price: "908.00"
+                    department: Home
+                    product: Gloves
+                    priceIDR: "14728441"
+                  - id: "99"
+                    createdAt: "2022-08-02T20:10:13.017Z"
+                    price: "226.00"
+                    department: Kids
+                    product: Tuna
+                    priceIDR: "3665889.5"
+                  - id: "100"
+                    createdAt: "2022-08-03T04:40:22.548Z"
+                    price: "979.00"
+                    department: Clothing
+                    product: Bike
+                    priceIDR: "15880114.25"
+  /products/aggregated:
+    get:
+      tags:
+        - Fetch
+      summary: Products Aggregated
+      responses:
+        "200":
+          description: OK
+          headers:
+            Date:
+              schema:
+                type: string
+                example: Wed, 01 Jan 2025 06:28:16 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              schema:
+                type: integer
+                example: "14347"
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  Automotive:
+                    Bike:
+                      - id: "3"
+                        createdAt: "2021-06-09T11:17:38.575Z"
+                        price: "652.00"
+                        department: Automotive
+                        product: Bike
+                        priceIDR: "10575929"
+                    Car:
+                      - id: "73"
+                        createdAt: "2021-06-09T14:14:27.754Z"
+                        price: "13.00"
+                        department: Automotive
+                        product: Car
+                        priceIDR: "210869.75"
+                    Chair:
+                      - id: "69"
+                        createdAt: "2021-06-09T10:10:35.591Z"
+                        price: "773.00"
+                        department: Automotive
+                        product: Chair
+                        priceIDR: "12538639.75"
+                    Hat:
+                      - id: "53"
+                        createdAt: "2021-06-09T21:05:41.897Z"
+                        price: "559.00"
+                        department: Automotive
+                        product: Hat
+                        priceIDR: "9067399.25"
+                    Mouse:
+                      - id: "51"
+                        createdAt: "2021-06-09T21:49:08.77Z"
+                        price: "921.00"
+                        department: Automotive
+                        product: Mouse
+                        priceIDR: "14939310.75"
+                    Salad:
+                      - id: "13"
+                        createdAt: "2021-06-09T04:51:50.198Z"
+                        price: "906.00"
+                        department: Automotive
+                        product: Salad
+                        priceIDR: "14695999.5"
+                    Towels:
+                      - id: "30"
+                        createdAt: "2021-06-09T16:39:53.722Z"
+                        price: "840.00"
+                        department: Automotive
+                        product: Towels
+                        priceIDR: "13625430"
+                    Tuna:
+                      - id: "79"
+                        createdAt: "2022-06-09T20:10:26.625Z"
+                        price: "653.00"
+                        department: Automotive
+                        product: Tuna
+                        priceIDR: "10592149.75"
+                  Baby:
+                    Bacon:
+                      - id: "6"
+                        createdAt: "2021-06-09T15:21:57.449Z"
+                        price: "100.00"
+                        department: Baby
+                        product: Bacon
+                        priceIDR: "1622075"
+                    Car:
+                      - id: "72"
+                        createdAt: "2021-06-09T15:12:21.648Z"
+                        price: "918.00"
+                        department: Baby
+                        product: Car
+                        priceIDR: "14890648.5"
+                    Gloves:
+                      - id: "61"
+                        createdAt: "2021-06-09T07:43:36.812Z"
+                        price: "276.00"
+                        department: Baby
+                        product: Gloves
+                        priceIDR: "4476927"
+                  Beauty:
+                    Chips:
+                      - id: "28"
+                        createdAt: "2021-06-09T06:10:02.172Z"
+                        price: "849.00"
+                        department: Beauty
+                        product: Chips
+                        priceIDR: "13771416.75"
+                    Gloves:
+                      - id: "52"
+                        createdAt: "2021-06-09T16:44:56.257Z"
+                        price: "146.00"
+                        department: Beauty
+                        product: Gloves
+                        priceIDR: "2368229.5"
+                    Salad:
+                      - id: "64"
+                        createdAt: "2021-06-09T23:45:14.234Z"
+                        price: "916.00"
+                        department: Beauty
+                        product: Salad
+                        priceIDR: "14858207"
+                    Table:
+                      - id: "11"
+                        createdAt: "2021-06-09T14:58:57.747Z"
+                        price: "293.00"
+                        department: Beauty
+                        product: Table
+                        priceIDR: "4752679.75"
+                    Tuna:
+                      - id: "54"
+                        createdAt: "2021-06-10T03:32:10.931Z"
+                        price: "96.00"
+                        department: Beauty
+                        product: Tuna
+                        priceIDR: "1557192"
+                  Books:
+                    Bike:
+                      - id: "62"
+                        createdAt: "2021-06-09T05:54:01.316Z"
+                        price: "72.00"
+                        department: Books
+                        product: Bike
+                        priceIDR: "1167894"
+                    Chair:
+                      - id: "12"
+                        createdAt: "2021-06-09T12:06:14.748Z"
+                        price: "546.00"
+                        department: Books
+                        product: Chair
+                        priceIDR: "8856529.5"
+                    Cheese:
+                      - id: "68"
+                        createdAt: "2021-06-09T23:08:49.509Z"
+                        price: "779.00"
+                        department: Books
+                        product: Cheese
+                        priceIDR: "12635964.25"
+                    Pizza:
+                      - id: "36"
+                        createdAt: "2021-06-09T15:39:02.106Z"
+                        price: "752.00"
+                        department: Books
+                        product: Pizza
+                        priceIDR: "12198004"
+                  Clothing:
+                    Ball:
+                      - id: "42"
+                        createdAt: "2021-06-09T09:33:24.675Z"
+                        price: "421.00"
+                        department: Clothing
+                        product: Ball
+                        priceIDR: "6828935.75"
+                    Bike:
+                      - id: "66"
+                        createdAt: "2021-06-09T22:22:36.104Z"
+                        price: "875.00"
+                        department: Clothing
+                        product: Bike
+                        priceIDR: "14193156.25"
+                      - id: "100"
+                        createdAt: "2022-08-03T04:40:22.548Z"
+                        price: "979.00"
+                        department: Clothing
+                        product: Bike
+                        priceIDR: "15880114.25"
+                    Hat:
+                      - id: "22"
+                        createdAt: "2021-06-09T23:03:47.654Z"
+                        price: "38.00"
+                        department: Clothing
+                        product: Hat
+                        priceIDR: "616388.5"
+                    Mouse:
+                      - id: "83"
+                        createdAt: "2022-06-10T01:36:19.453Z"
+                        price: "470.00"
+                        department: Clothing
+                        product: Mouse
+                        priceIDR: "7623752.5"
+                    Pants:
+                      - id: "7"
+                        createdAt: "2021-06-09T12:19:54.176Z"
+                        price: "584.00"
+                        department: Clothing
+                        product: Pants
+                        priceIDR: "9472918"
+                    Sausages:
+                      - id: "85"
+                        createdAt: "2022-08-02T18:32:07.286Z"
+                        price: "810.00"
+                        department: Clothing
+                        product: Sausages
+                        priceIDR: "13138807.5"
+                  Computers:
+                    Car:
+                      - id: "14"
+                        createdAt: "2021-06-09T10:58:52.802Z"
+                        price: "870.00"
+                        department: Computers
+                        product: Car
+                        priceIDR: "14112052.5"
+                    Fish:
+                      - id: "74"
+                        createdAt: "2021-06-10T00:05:09.288Z"
+                        price: "5.00"
+                        department: Computers
+                        product: Fish
+                        priceIDR: "81103.75"
+                      - id: "19"
+                        createdAt: "2021-06-09T15:27:43.954Z"
+                        price: "219.00"
+                        department: Computers
+                        product: Fish
+                        priceIDR: "3552344.25"
+                    Mouse:
+                      - id: "92"
+                        createdAt: "2022-08-03T09:35:18.62Z"
+                        price: "924.00"
+                        department: Computers
+                        product: Mouse
+                        priceIDR: "14987973"
+                  Games:
+                    Ball:
+                      - id: "29"
+                        createdAt: "2021-06-10T00:30:51.903Z"
+                        price: "869.00"
+                        department: Games
+                        product: Ball
+                        priceIDR: "14095831.75"
+                    Bike:
+                      - id: "40"
+                        createdAt: "2021-06-09T07:13:16.792Z"
+                        price: "111.00"
+                        department: Games
+                        product: Bike
+                        priceIDR: "1800503.25"
+                    Chips:
+                      - id: "2"
+                        createdAt: "2021-06-09T10:11:46.024Z"
+                        price: "784.00"
+                        department: Games
+                        product: Chips
+                        priceIDR: "12717068"
+                    Computer:
+                      - id: "70"
+                        createdAt: "2021-06-09T15:40:22.942Z"
+                        price: "4.00"
+                        department: Games
+                        product: Computer
+                        priceIDR: "64883"
+                    Keyboard:
+                      - id: "21"
+                        createdAt: "2021-06-10T00:47:26.646Z"
+                        price: "556.00"
+                        department: Games
+                        product: Keyboard
+                        priceIDR: "9018737"
+                    Pizza:
+                      - id: "89"
+                        createdAt: "2022-08-03T11:30:44.727Z"
+                        price: "837.00"
+                        department: Games
+                        product: Pizza
+                        priceIDR: "13576767.75"
+                    Sausages:
+                      - id: "38"
+                        createdAt: "2021-06-09T22:40:17.256Z"
+                        price: "307.00"
+                        department: Games
+                        product: Sausages
+                        priceIDR: "4979770.25"
+                    Soap:
+                      - id: "10"
+                        createdAt: "2021-06-09T04:59:49.031Z"
+                        price: "877.00"
+                        department: Games
+                        product: Soap
+                        priceIDR: "14225597.75"
+                      - id: "97"
+                        createdAt: "2022-08-02T16:04:48.453Z"
+                        price: "940.00"
+                        department: Games
+                        product: Soap
+                        priceIDR: "15247505"
+                  Garden:
+                    Bike:
+                      - id: "39"
+                        createdAt: "2021-06-10T01:39:52.165Z"
+                        price: "740.00"
+                        department: Garden
+                        product: Bike
+                        priceIDR: "12003355"
+                    Cheese:
+                      - id: "20"
+                        createdAt: "2021-06-09T05:19:33.617Z"
+                        price: "878.00"
+                        department: Garden
+                        product: Cheese
+                        priceIDR: "14241818.5"
+                    Chips:
+                      - id: "56"
+                        createdAt: "2021-06-10T03:13:09.891Z"
+                        price: "285.00"
+                        department: Garden
+                        product: Chips
+                        priceIDR: "4622913.75"
+                    Hat:
+                      - id: "31"
+                        createdAt: "2021-06-09T18:44:22.207Z"
+                        price: "353.00"
+                        department: Garden
+                        product: Hat
+                        priceIDR: "5725924.75"
+                      - id: "65"
+                        createdAt: "2021-06-09T09:49:27.902Z"
+                        price: "416.00"
+                        department: Garden
+                        product: Hat
+                        priceIDR: "6747832"
+                    Salad:
+                      - id: "76"
+                        createdAt: "2022-03-19T21:59:31.417Z"
+                        price: "102.00"
+                        department: Garden
+                        product: Salad
+                        priceIDR: "1654516.5"
+                  Grocery:
+                    Car:
+                      - id: "84"
+                        createdAt: "2022-08-03T02:09:58.666Z"
+                        price: "764.00"
+                        department: Grocery
+                        product: Car
+                        priceIDR: "12392653"
+                    Table:
+                      - id: "49"
+                        createdAt: "2021-06-10T01:44:10.504Z"
+                        price: "137.00"
+                        department: Grocery
+                        product: Table
+                        priceIDR: "2222242.75"
+                    Towels:
+                      - id: "86"
+                        createdAt: "2022-08-02T23:47:18.041Z"
+                        price: "782.00"
+                        department: Grocery
+                        product: Towels
+                        priceIDR: "12684626.5"
+                  Health:
+                    Bacon:
+                      - id: "55"
+                        createdAt: "2021-06-09T19:21:02.928Z"
+                        price: "82.00"
+                        department: Health
+                        product: Bacon
+                        priceIDR: "1330101.5"
+                    Ball:
+                      - id: "75"
+                        createdAt: "2021-06-09T07:41:58.851Z"
+                        price: "576.00"
+                        department: Health
+                        product: Ball
+                        priceIDR: "9343152"
+                    Car:
+                      - id: "17"
+                        createdAt: "2021-06-09T05:00:03.467Z"
+                        price: "33.00"
+                        department: Health
+                        product: Car
+                        priceIDR: "535284.75"
+                    Computer:
+                      - id: "9"
+                        createdAt: "2021-06-09T12:01:47.71Z"
+                        price: "493.00"
+                        department: Health
+                        product: Computer
+                        priceIDR: "7996829.75"
+                    Pizza:
+                      - id: "67"
+                        createdAt: "2021-06-09T18:49:19.622Z"
+                        price: "51.00"
+                        department: Health
+                        product: Pizza
+                        priceIDR: "827258.25"
+                  Home:
+                    Bike:
+                      - id: "44"
+                        createdAt: "2021-06-09T05:08:08.44Z"
+                        price: "929.00"
+                        department: Home
+                        product: Bike
+                        priceIDR: "15069076.75"
+                    Computer:
+                      - id: "34"
+                        createdAt: "2021-06-09T19:10:32.176Z"
+                        price: "665.00"
+                        department: Home
+                        product: Computer
+                        priceIDR: "10786798.75"
+                    Gloves:
+                      - id: "98"
+                        createdAt: "2022-08-03T14:28:34.75Z"
+                        price: "908.00"
+                        department: Home
+                        product: Gloves
+                        priceIDR: "14728441"
+                    Keyboard:
+                      - id: "57"
+                        createdAt: "2021-06-09T04:46:50Z"
+                        price: "977.00"
+                        department: Home
+                        product: Keyboard
+                        priceIDR: "15847672.75"
+                    Pants:
+                      - id: "87"
+                        createdAt: "2022-08-02T19:09:52.313Z"
+                        price: "395.00"
+                        department: Home
+                        product: Pants
+                        priceIDR: "6407196.25"
+                  Industrial:
+                    Cheese:
+                      - id: "41"
+                        createdAt: "2021-06-09T22:43:28.851Z"
+                        price: "894.00"
+                        department: Industrial
+                        product: Cheese
+                        priceIDR: "14501350.5"
+                    Chips:
+                      - id: "93"
+                        createdAt: "2022-08-03T14:00:11.35Z"
+                        price: "644.00"
+                        department: Industrial
+                        product: Chips
+                        priceIDR: "10446163"
+                    Table:
+                      - id: "60"
+                        createdAt: "2021-06-09T08:33:16.487Z"
+                        price: "180.00"
+                        department: Industrial
+                        product: Table
+                        priceIDR: "2919735"
+                  Jewelery:
+                    Chips:
+                      - id: "95"
+                        createdAt: "2022-08-03T01:20:57.254Z"
+                        price: "775.00"
+                        department: Jewelery
+                        product: Chips
+                        priceIDR: "12571081.25"
+                    Soap:
+                      - id: "90"
+                        createdAt: "2022-08-03T01:04:12.28Z"
+                        price: "267.00"
+                        department: Jewelery
+                        product: Soap
+                        priceIDR: "4330940.25"
+                    Table:
+                      - id: "35"
+                        createdAt: "2021-06-09T11:40:41.908Z"
+                        price: "179.00"
+                        department: Jewelery
+                        product: Table
+                        priceIDR: "2903514.25"
+                  Kids:
+                    Bacon:
+                      - id: "8"
+                        createdAt: "2021-06-09T18:26:11.407Z"
+                        price: "265.00"
+                        department: Kids
+                        product: Bacon
+                        priceIDR: "4298498.75"
+                    Car:
+                      - id: "58"
+                        createdAt: "2021-06-09T15:41:48.387Z"
+                        price: "973.00"
+                        department: Kids
+                        product: Car
+                        priceIDR: "15782789.75"
+                    Chicken:
+                      - id: "37"
+                        createdAt: "2021-06-09T08:53:04.294Z"
+                        price: "653.00"
+                        department: Kids
+                        product: Chicken
+                        priceIDR: "10592149.75"
+                    Keyboard:
+                      - id: "91"
+                        createdAt: "2022-08-03T11:50:08.84Z"
+                        price: "908.00"
+                        department: Kids
+                        product: Keyboard
+                        priceIDR: "14728441"
+                    Sausages:
+                      - id: "59"
+                        createdAt: "2021-06-09T09:07:33.513Z"
+                        price: "950.00"
+                        department: Kids
+                        product: Sausages
+                        priceIDR: "15409712.5"
+                    Shoes:
+                      - id: "33"
+                        createdAt: "2021-06-09T08:10:24.806Z"
+                        price: "304.00"
+                        department: Kids
+                        product: Shoes
+                        priceIDR: "4931108"
+                    Tuna:
+                      - id: "99"
+                        createdAt: "2022-08-02T20:10:13.017Z"
+                        price: "226.00"
+                        department: Kids
+                        product: Tuna
+                        priceIDR: "3665889.5"
+                  Movies:
+                    Chicken:
+                      - id: "25"
+                        createdAt: "2021-06-09T21:58:02.611Z"
+                        price: "327.00"
+                        department: Movies
+                        product: Chicken
+                        priceIDR: "5304185.25"
+                      - id: "71"
+                        createdAt: "2021-06-09T22:33:14.108Z"
+                        price: "355.00"
+                        department: Movies
+                        product: Chicken
+                        priceIDR: "5758366.25"
+                    Pants:
+                      - id: "15"
+                        createdAt: "2021-06-09T20:42:15.915Z"
+                        price: "443.00"
+                        department: Movies
+                        product: Pants
+                        priceIDR: "7185792.25"
+                    Towels:
+                      - id: "77"
+                        createdAt: "2022-06-10T05:48:40.942Z"
+                        price: "169.00"
+                        department: Movies
+                        product: Towels
+                        priceIDR: "2741306.75"
+                    Tuna:
+                      - id: "63"
+                        createdAt: "2021-06-09T07:30:44.152Z"
+                        price: "140.00"
+                        department: Movies
+                        product: Tuna
+                        priceIDR: "2270905"
+                  Music:
+                    Car:
+                      - id: "47"
+                        createdAt: "2021-06-10T01:34:52.459Z"
+                        price: "211.00"
+                        department: Music
+                        product: Car
+                        priceIDR: "3422578.25"
+                    Keyboard:
+                      - id: "23"
+                        createdAt: "2021-06-09T09:37:10.447Z"
+                        price: "381.00"
+                        department: Music
+                        product: Keyboard
+                        priceIDR: "6180105.75"
+                  Outdoors:
+                    Car:
+                      - id: "78"
+                        createdAt: "2022-06-09T16:50:27.304Z"
+                        price: "907.00"
+                        department: Outdoors
+                        product: Car
+                        priceIDR: "14712220.25"
+                    Keyboard:
+                      - id: "96"
+                        createdAt: "2022-08-03T13:41:47.59Z"
+                        price: "584.00"
+                        department: Outdoors
+                        product: Keyboard
+                        priceIDR: "9472918"
+                    Salad:
+                      - id: "1"
+                        createdAt: "2021-06-09T09:37:05.527Z"
+                        price: "218.00"
+                        department: Outdoors
+                        product: Salad
+                        priceIDR: "3536123.5"
+                    Shoes:
+                      - id: "24"
+                        createdAt: "2021-06-09T18:39:49.036Z"
+                        price: "881.00"
+                        department: Outdoors
+                        product: Shoes
+                        priceIDR: "14290480.75"
+                    Table:
+                      - id: "18"
+                        createdAt: "2021-06-09T21:12:33.589Z"
+                        price: "803.00"
+                        department: Outdoors
+                        product: Table
+                        priceIDR: "13025262.25"
+                  Shoes:
+                    Bike:
+                      - id: "27"
+                        createdAt: "2021-06-09T10:53:59.835Z"
+                        price: "621.00"
+                        department: Shoes
+                        product: Bike
+                        priceIDR: "10073085.75"
+                    Cheese:
+                      - id: "48"
+                        createdAt: "2021-06-09T06:57:51.11Z"
+                        price: "408.00"
+                        department: Shoes
+                        product: Cheese
+                        priceIDR: "6618066"
+                    Mouse:
+                      - id: "45"
+                        createdAt: "2021-06-10T00:12:43.834Z"
+                        price: "231.00"
+                        department: Shoes
+                        product: Mouse
+                        priceIDR: "3746993.25"
+                    Salad:
+                      - id: "50"
+                        createdAt: "2021-06-09T23:43:06.232Z"
+                        price: "505.00"
+                        department: Shoes
+                        product: Salad
+                        priceIDR: "8191478.75"
+                  Sports:
+                    Keyboard:
+                      - id: "88"
+                        createdAt: "2022-08-03T06:29:36.189Z"
+                        price: "758.00"
+                        department: Sports
+                        product: Keyboard
+                        priceIDR: "12295328.5"
+                    Salad:
+                      - id: "26"
+                        createdAt: "2021-06-09T15:48:49.399Z"
+                        price: "538.00"
+                        department: Sports
+                        product: Salad
+                        priceIDR: "8726763.5"
+                    Sausages:
+                      - id: "32"
+                        createdAt: "2021-06-09T12:22:33.457Z"
+                        price: "645.00"
+                        department: Sports
+                        product: Sausages
+                        priceIDR: "10462383.75"
+                  Tools:
+                    Chicken:
+                      - id: "81"
+                        createdAt: "2022-06-10T00:08:57.33Z"
+                        price: "596.00"
+                        department: Tools
+                        product: Chicken
+                        priceIDR: "9667567"
+                    Fish:
+                      - id: "94"
+                        createdAt: "2022-08-03T12:54:47.703Z"
+                        price: "866.00"
+                        department: Tools
+                        product: Fish
+                        priceIDR: "14047169.5"
+                    Gloves:
+                      - id: "46"
+                        createdAt: "2021-06-09T15:30:16.468Z"
+                        price: "991.00"
+                        department: Tools
+                        product: Gloves
+                        priceIDR: "16074763.25"
+                    Soap:
+                      - id: "43"
+                        createdAt: "2021-06-09T07:37:14.96Z"
+                        price: "819.00"
+                        department: Tools
+                        product: Soap
+                        priceIDR: "13284794.25"
+                    Tuna:
+                      - id: "4"
+                        createdAt: "2021-06-09T04:42:03.396Z"
+                        price: "544.00"
+                        department: Tools
+                        product: Tuna
+                        priceIDR: "8824088"
+                  Toys:
+                    Fish:
+                      - id: "5"
+                        createdAt: "2021-06-09T04:32:08.983Z"
+                        price: "643.00"
+                        department: Toys
+                        product: Fish
+                        priceIDR: "10429942.25"
+                    Pants:
+                      - id: "80"
+                        createdAt: "2022-06-09T09:53:37.316Z"
+                        price: "485.00"
+                        department: Toys
+                        product: Pants
+                        priceIDR: "7867063.75"
+                    Pizza:
+                      - id: "82"
+                        createdAt: "2022-06-09T19:36:40.11Z"
+                        price: "587.00"
+                        department: Toys
+                        product: Pizza
+                        priceIDR: "9521580.25"
+                    Towels:
+                      - id: "16"
+                        createdAt: "2021-06-09T20:11:05.772Z"
+                        price: "810.00"
+                        department: Toys
+                        product: Towels
+                        priceIDR: "13138807.5"
