@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "@application/*": ["application/*"],
+      "@utils/*": ["utils/*"],
+      "@domain/*": ["domain/*"],
+      "@lib/*": ["lib/*"],
+      "@middleware/*": ["middlewares/*"],
+      "@routes/*": ["routes/*"],
+      "@config/*": ["config/*"],
+      "@validation/*": ["validation/*"],
+      "@type/*": ["types/*"],
+      "@request/*": ["type/request/*"],
+      "@reference/*": ["domain/reference/*"],
+      "@error/*": ["error/*"]
+    }
+  }
+}

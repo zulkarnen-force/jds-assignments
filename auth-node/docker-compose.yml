@@ -1,0 +1,37 @@
+name: jds
+
+networks:
+  default:
+    driver: bridge
+    name: jds_network
+
+volumes:
+  db_jds_data:
+
+services:
+  jds.auth:
+    container_name: jds.auth
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile
+      target: release
+    ports:
+      - "${PORT}:${PORT}"
+    env_file:
+      - .env
+    networks:
+      - default
+
+  jds.db:
+    container_name: jds.db
+    image: postgres:16.2
+    ports:
+      - ${EXPOSE_DB:-1231}:5432
+    environment:
+      - POSTGRES_DB=${DB_DATABASE}
+      - POSTGRES_USER=${DB_USERNAME}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - db_jds_data:/var/lib/postgresql/data
+    networks:
+      - default

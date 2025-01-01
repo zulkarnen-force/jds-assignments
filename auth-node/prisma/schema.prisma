@@ -1,0 +1,20 @@
+generator client {
+  provider      = "prisma-client-js"
+  seed          = "prisma/seed.ts"
+  binaryTargets = ["linux-musl-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id         Int      @id @default(autoincrement())
+  name       String?  @db.VarChar(100)
+  nik        String?  @db.VarChar(16) @unique
+  password   String?  @db.VarChar(100)
+  role       String?  @db.VarChar(50) @default("user")
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now()) @updatedAt
+}

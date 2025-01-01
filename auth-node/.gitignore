@@ -1,0 +1,13 @@
+node_modules/
+# Keep environment variables out of version control
+.env
+dist/
+coverage/
+sql/*data*.sql
+sql/**/*postgres*.sql
+**/*.bak
+logs/
+uploads/*.png
+uploads/*.jpg
+public/img/avatar/*[.jpg, .png, .jpeg]
+db/
