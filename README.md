@@ -32,6 +32,13 @@ chmod +x ./run.sh
 
 This will build and start container. Make sure the container's is up
 
+```sh
+docker compose ps
+```
+
+![image](https://github.com/user-attachments/assets/214c4014-12f4-4246-a51b-f7baf8dc90c7)
+
+
 The Auth Node running on
 
 ```
@@ -47,6 +54,8 @@ http://localhost:8080
 ## Example
 
 ### Auth Node
+
+### Register
 
 ```sh
 curl -X 'POST' \
